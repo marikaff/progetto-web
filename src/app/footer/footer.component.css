@@ -1,0 +1,68 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css');
+
+footer {
+    background-color: #800020; /* Bordeaux con trasparenza */
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 98%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.company-info p {
+    margin: 3px 0;
+}
+
+.company-info a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.company-info a:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center; /* Centra le icone */
+    align-items: center;
+}
+
+.social-links a {
+    margin: 0 8px;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.social-links a i {
+    font-size: 24px;
+}
+
+.social-links a:hover {
+    color: #ddd;
+}
+
+.unical-link a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.unical-link a:hover {
+    text-decoration: underline;
+}
