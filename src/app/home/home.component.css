@@ -1,0 +1,94 @@
+/* Barra di ricerca */
+.search-container {
+    margin: 75px auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-container input {
+    padding: 15px;
+    width: 40%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.search-container .search-btn,
+.search-container .upload-btn {
+    padding: 5px 20px;
+    background-color: #800020;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background-color: #a72626; /* Colore al passaggio del mouse */
+}
+
+/* Sezione documenti */
+.recent-similar {
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.recent-similar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.document-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.document {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 180px;
+    text-align: center;
+}
+
+.document .thumbnail {
+    height: 100px;
+    background-color: #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+/* Icona upload */
+.upload-icon {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.upload-icon .upload-btn {
+    padding: 10px 20px;
+    background-color: #800020;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.upload-btn:hover {
+    background-color: #a72626;
+}
+
+
+
+/* Stile per il pulsante Cerca */
+.search-btn {
+    background-color: #a72626; /* Colore di base */
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}

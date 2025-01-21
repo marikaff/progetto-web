@@ -1,0 +1,35 @@
+<main>
+    <div class="search-container">
+        <input type="text" placeholder="Cerca documenti">
+        <button class="search-btn">🔍</button>
+    </div>
+
+    <section class="recent-similar">
+        <h2>Visti di recente e simili</h2>
+        <div class="document-list">
+            <div class="document" *ngFor="let doc of [
+                { title: 'Ingegneria software appunti', subject: 'Ingegneria Informatica', rating: '⭐⭐☆☆☆' },
+                { title: 'Design Patterns', subject: 'Informatica', rating: '⭐⭐⭐☆☆' },
+                { title: 'Appunti Basi di dati 2022-2023', subject: 'Ingegneria Gestionale', rating: '⭐⭐⭐⭐☆' },
+                { title: 'Fisica di base', subject: 'Biotecnologie', rating: '⭐⭐☆☆☆' },
+                { title: 'Analisi Matematica 1', subject: 'Ingegneria Meccanica', rating: '⭐⭐⭐☆☆' }
+            ]">
+                <div class="thumbnail"></div>
+                <p>{{ doc.title }}</p>
+                <p>{{ doc.subject }}</p>
+                <p>{{ doc.rating }}</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="upload-icon">
+        <button class="upload-btn" (click)="fileInput.click()">📤 Carica documento</button>
+        <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
+    </div>
+
+    <div id="fileList">
+        <div *ngFor="let file of fileList">
+            📄 {{ file.name }} <span>({{ (file.size / 1024).toFixed(2) }} KB)</span>
+        </div>
+    </div>
+</main>
