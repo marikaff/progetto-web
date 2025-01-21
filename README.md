@@ -8,3 +8,18 @@ To start a local development server, run: ng serve
 
 To build the project run: ng build
 
+
+COSE FATTE:
+- pagina home
+- pagina login
+- pagina registrazione + controllo
+- header
+- footer
+- popup per info documento
+- pulsante per tema scuro
+
+
+COSE DA FARE
+- pagina dell'amministratore (con la bacheca dei documenti da verificare)
+- pagina dell'utente (con modifica password, bacheca con documenti caricati dall'utente, preferiri, bacheca dei messaggi e pulsante dii logout)
+- pagina generale per quando si clicca un documento e si possono visualizzare le infomazioni del documento, mettere il cuore (va nei preferiti) e scaricare il documento
