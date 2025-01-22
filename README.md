@@ -20,10 +20,19 @@ COSE FATTE:
 
 COSE DA FARE
 - pagina dell'amministratore (con la bacheca dei documenti da verificare)
-- pagina dell'utente (con modifica password, bacheca con documenti caricati dall'utente, preferiri, bacheca dei messaggi e pulsante dii logout)
-- pagina generale per quando si clicca un documento e si possono visualizzare le infomazioni del documento, mettere il cuore (va nei preferiti) e scaricare il documento
+- pagina dell'utente (con modifica password, bacheca con documenti caricati dall'utente, preferiti, bacheca dei messaggi e pulsante dii logout)
 
 
 
 **ALTRO:**
 usare un api che come ti registri ti arriva una mail di conferma nella mail specificata
+
+
+
+
+
+
+- pagina generale per quando si clicca un documento e si possono visualizzare le infomazioni del documento, mettere il cuore (va nei preferiti) e scaricare il documento
+
+
+
