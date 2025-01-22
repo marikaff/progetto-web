@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FooterComponent } from './footer/footer.component';
 
-//import { PreferitiComponent } from './preferiti/preferiti.component';
+//import { ProfiloComponent } from './profilo/profilo.component';
 //import { AdminComponent } from './admin/admin.component';
 //import { DocTemplateComponent } from './doc-template/doc-template.component';
 
@@ -18,7 +18,7 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'registration', component: RegistrationComponent},
     {path: 'footer', component: FooterComponent},
-    //{path: 'preferiti', component: PreferitiComponent},
+    //{path: 'profilo', component: ProfiloComponent},
     //{path: 'admin', component: AdminComponent},
     //{path: 'docTemplate', component:DocTemplateComponent},
     {path: '', redirectTo:'/home', pathMatch: 'full'}

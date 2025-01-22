@@ -8,7 +8,6 @@ import { HomeComponent } from './app/home/home.component';
 //import { RegistrationComponent } from './registration/registration.component';
 //import { FooterComponent } from './footer/footer.component';
 //import { ProfiloComponent } from './app/profilo/profilo.component';
-//import { PreferitiComponent } from './app/preferiti/preferiti.component';
 //import { AdminComponent } from './admin/admin.component';
 //import { DocTemplateComponent } from './doc-template/doc-template.component';
 

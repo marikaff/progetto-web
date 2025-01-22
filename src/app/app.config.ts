@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 //import { ProfiloComponent } from './profilo/profilo.component';
-//import { PreferitiComponent } from './preferiti/preferiti.component';
+//import { AdminComponent } from './admin/admin.component';
 
 import { routes } from './app.routes';
 
