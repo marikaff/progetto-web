@@ -9,9 +9,12 @@ import { CommonModule } from '@angular/common'; // Importazione per ngIf
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  
   fileList: { name: string, size: number }[] = [];
   popupVisible: boolean = false; // Variabile per controllare la visibilità del popup
   selectedFile: any;
+
+  
 
   onFileSelected(event: any) {
     //console.log("Evento di selezione file attivato", event);  // Verifica se l'evento viene attivato

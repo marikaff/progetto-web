@@ -9,7 +9,7 @@ import { HomeComponent } from './app/home/home.component';
 //import { FooterComponent } from './footer/footer.component';
 //import { ProfiloComponent } from './app/profilo/profilo.component';
 //import { AdminComponent } from './admin/admin.component';
-//import { DocTemplateComponent } from './doc-template/doc-template.component';
+//import { DocComponent } from './doc/doc.component';
 
 
 

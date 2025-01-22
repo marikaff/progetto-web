@@ -5,11 +5,11 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FooterComponent } from './footer/footer.component';
 
-//import { ProfiloComponent } from './profilo/profilo.component';
-//import { AdminComponent } from './admin/admin.component';
-//import { DocTemplateComponent } from './doc-template/doc-template.component';
+import { ProfiloComponent } from './profilo/profilo.component';
+import { AdminComponent } from './admin/admin.component';
+import { DocComponent } from './doc/doc.component';
 
-//QUANDO SI CREANO LE PAGINE TOGLIERE COMMENTI A MANO A MANO
+
 
 
 export const routes: Routes = [
@@ -18,9 +18,9 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'registration', component: RegistrationComponent},
     {path: 'footer', component: FooterComponent},
-    //{path: 'profilo', component: ProfiloComponent},
-    //{path: 'admin', component: AdminComponent},
-    //{path: 'docTemplate', component:DocTemplateComponent},
+    {path: 'profilo', component: ProfiloComponent},
+    {path: 'admin', component: AdminComponent},
+    {path: 'doc', component:DocComponent},
     {path: '', redirectTo:'/home', pathMatch: 'full'}
 
 ];
