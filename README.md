@@ -24,6 +24,8 @@ COSE DA FARE
 - pagina generale per quando si clicca un documento e si possono visualizzare le infomazioni del documento, mettere il cuore (va nei preferiti) e scaricare il documento
 
 
+- quando si vanno a cercare i documenti si possono ordinare in ordine alfabetico, o in base alla dimensione
+
 **ALTRO:**
 usare un api che come ti registri ti arriva una mail di conferma nella mail specificata
 
