@@ -1,9 +1,12 @@
-<div class="document-container">
-    <h1 id="document-name">{{ document.name }}</h1>
-    <div class="document-details">
-        <p><strong>Dimensione:</strong> {{ document.size }}</p>
-        <p><strong>Descrizione:</strong> {{ document.description }}</p>
-        <p><strong>Facoltà:</strong> {{ document.faculty }}</p>
+<div class="document-wrapper">
+    <div class="document-container">
+        <h1 id="document-name"> {{ document.name }}</h1>
+        <div class="document-details">
+            <h2><strong>Facoltà:</strong> {{ document.faculty }}</h2>
+            <h2><strong>Descrizione:</strong> {{ document.description }}</h2>
+            <h4><strong>Dimensione:</strong> {{ document.size }}</h4>
+        </div>
+        <a [href]="document.downloadUrl" class="download-button">Scarica Documento</a>
+        <a href="/" class="home-button">Torna alla Home</a>
     </div>
-    <a [href]="document.downloadUrl" class="download-button">Scarica Documento</a>
 </div>

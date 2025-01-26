@@ -21,6 +21,7 @@ export const routes: Routes = [
     {path: 'profilo', component: ProfiloComponent},
     {path: 'admin', component: AdminComponent},
     {path: 'doc', component:DocComponent},
+    //{path: 'doc/:title', component: DocComponent},
     {path: '', redirectTo:'/home', pathMatch: 'full'}
 
 ];
