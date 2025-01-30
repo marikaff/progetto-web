@@ -22,7 +22,7 @@ COSE DA FARE
 - pagina di ricerca (quando uno cerca un documento e compare la pagina con i vari documenti (ad esempio cerco analisi 1 e mi esce la pagina di ricerca con 5 documenti che si chiamano "analisi 1")
 - pagina dell'amministratore (con la bacheca dei documenti da verificare)
 - pagina dell'utente (con modifica password, bacheca con documenti caricati dall'utente, preferiti, bacheca dei messaggi e pulsante di logout)
-- pagina generale per quando si clicca un documento e si possono visualizzare le infomazioni del documento, mettere il cuore (va nei preferiti) e scaricare il documento (MARIKA)
+- pagina generale per quando si clicca un documento e si possono visualizzare le infomazioni del documento, mettere il cuore (va nei preferiti) e scaricare il documento (marika)
 
 
 
@@ -34,7 +34,7 @@ usare un api che come ti registri ti arriva una mail di conferma nella mail spec
 
 
 !!
-fare controllo nel login, se le credenziali sono uguali a "admin@studenti.unical.it" "admin123" apre la pagina dell'amministratore
+fare controllo nel login, se le credenziali sono uguali a "admin@studenti.unical.it" "admin123" apre la pagina dell'amministratore (marika)
 !!
 
 
