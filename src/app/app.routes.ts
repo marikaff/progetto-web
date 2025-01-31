@@ -20,8 +20,8 @@ export const routes: Routes = [
     {path: 'footer', component: FooterComponent},
     {path: 'profilo', component: ProfiloComponent},
     {path: 'admin', component: AdminComponent},
-    {path: 'doc', component:DocComponent},
-    //{path: 'doc/:title', component: DocComponent},
+
+    {path: 'doc/:id/:title/:subject/:rating', component: DocComponent},
     {path: '', redirectTo:'/home', pathMatch: 'full'}
 
 ];

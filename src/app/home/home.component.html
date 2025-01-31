@@ -7,19 +7,20 @@
     <section class="recent-similar">
       <h2>Visti di recente e simili</h2>
       <div class="document-list">
-        <div class="document" *ngFor="let doc of [
-          { title: 'Ingegneria software appunti', subject: 'Ingegneria Informatica', rating: '⭐⭐☆☆☆' },
-          { title: 'Design Patterns', subject: 'Informatica', rating: '⭐⭐⭐☆☆' },
-          { title: 'Appunti Basi di dati 2022-2023', subject: 'Ingegneria Gestionale', rating: '⭐⭐⭐⭐☆' },
-          { title: 'Fisica di base', subject: 'Biotecnologie', rating: '⭐⭐☆☆☆' },
-          { title: 'Analisi Matematica 1', subject: 'Ingegneria Meccanica', rating: '⭐⭐⭐☆☆' }
-        ]">
-          <div class="thumbnail"></div>
-          <p>{{ doc.title }}</p>
-          <p>{{ doc.subject }}</p>
-          <p>{{ doc.rating }}</p>
+              
+        <div class="document-list">
+          <div class="document" *ngFor="let doc of documents">
+            <a [routerLink]="['/doc',doc.id, doc.title, doc.subject, doc.year]" >
+              <div class="thumbnail"></div>
+              <p>{{ doc.title }}</p>
+              <p>{{ doc.subject }}</p>
+              <p>{{ doc.year }}</p>
+            </a>
+          </div>
         </div>
       </div>
+      
+        
     </section>
   
     <div class="upload-icon">

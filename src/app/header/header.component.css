@@ -86,7 +86,7 @@ header .toggle-container {
 
 /* Cambia colore quando lo switch è acceso */
 input:checked + .slider{
-    background-color: #007BFF; /* Blu quando attivo */
+    background-color: #074f9b; /* Blu quando attivo */
 }
 
 /* Posiziona correttamente le icone */

@@ -224,3 +224,13 @@ textarea {
 .popup.visible .popup-content {
     transform: translateY(0);
 }
+
+/* Rimuovi il colore blu e la sottolineatura dai link */
+a {
+    color: black; /* Colore bianco per i link */
+    text-decoration: none; /* Rimuove la sottolineatura */
+}
+
+a:hover {
+    color: #800020; /* Colore per il passaggio del mouse, ad esempio un rosso scuro */
+}
