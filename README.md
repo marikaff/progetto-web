@@ -22,7 +22,12 @@ COSE DA FARE
 - pagina dell'amministratore (con la bacheca dei documenti da verificare)
 - pagina dell'utente (con modifica password, bacheca con documenti caricati dall'utente, preferiti, bacheca dei messaggi e pulsante di logout)
 
-
+**BACKEND**
+LOGIN/REGISTRAZIONE
+SCARICARE IL DOCUMENTO CON IL PULSANTE APPOSITO
+AGGINTA DELLA LISTA DEI PREFERITI 
+ORDINAMENTO IN ORDINE ALFABETICO DEI DOCUMENTI
+API ESTERNE
 
 
 **ALTRO:**
