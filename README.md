@@ -1,5 +1,11 @@
 # Web
 
+git pull
+git fetch
+git add .
+git commit -m
+git push
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
 
 ## Development server
