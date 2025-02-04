@@ -25,7 +25,7 @@ export const routes: Routes = [
     {path: 'admin', component: AdminComponent},
     { path: 'login', component: LoginComponent },
 
-    {path: 'doc/:id/:title/:subject/:rating', component: DocComponent},
+    {path: 'doc/:id/:title/:subject/:year', component: DocComponent},
     {path: '', redirectTo:'/home', pathMatch: 'full'}
 
 ];
