@@ -14,9 +14,9 @@ export class HeaderComponent {
   constructor(private renderer: Renderer2) {}
 
   toggleTheme(event: any) {
-    const ids = ["mainHome","h2recent","subtitle","header","footer","documentSection","popup","login-container"];
+    const ids = ["mainHome","h2recent","header","footer","documentSection","popup","login-container"];
 
-    const backgroundColor = event.target.checked ? "rgb(33, 31, 31)" : "white"; // Sfondo scuro o chiaro
+    const backgroundColor = event.target.checked ? "rgb(46, 37, 37)" : "white"; // Sfondo scuro o chiaro
     const textColor = event.target.checked ? "white" : "black"; // Testo bianco solo nel tema scuro
     
     ids.forEach((id) => {
