@@ -15,6 +15,7 @@ export class HomeComponent {
   popupVisible: boolean = false; // Variabile per controllare la visibilità del popup
   selectedFile: any;
 
+  //!DOCUMENTI CHE VANNO PRESI DAL BACK DAL DATABASE !!!!!!!!!!!!!!!!!
   documents = [
     { id: 1, title: 'Ingegneria software appunti', subject: 'Ingegneria Informatica', year: 'A.A. 2023/24' },
     { id: 2, title: 'Design Patterns', subject: 'Informatica', year: 'A.A. 2022/23' },
