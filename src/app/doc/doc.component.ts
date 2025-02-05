@@ -18,6 +18,8 @@ export class DocComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {}
 
+  //cosi prende i documenti dalla pagina home (o dal back)
+
   ngOnInit(): void {
     const docId = this.route.snapshot.paramMap.get('id');
     const title = this.route.snapshot.paramMap.get('title');

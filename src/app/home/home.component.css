@@ -10,30 +10,43 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    visibility: hidden; /* Inizialmente nascosto */
+    visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Popup visibile */
+.popup.visible {
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Contenuto del popup */
 .popup-content {
     background-color: white;
     padding: 30px;
-    border-radius: 12px; /* Bordo più morbido */
+    border-radius: 12px;
     width: 90%;
-    max-width: 450px; /* Larghezza maggiore per migliorare l'aspetto */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Ombra più accentuata */
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     text-align: center;
-    transform: translateY(20px); /* Aggiunta di un effetto di ingresso */
+    transform: translateY(20px);
     transition: transform 0.3s ease;
 }
 
-/* Titolo del popup */
-.popup-content h2 {
-    margin-bottom: 20px;
-    font-size: 26px; /* Font più grande per il titolo */
-    color: #800020;
-    font-weight: bold; /* Titolo più evidente */
+/* Aggiungi effetto di traslazione per il popup */
+.popup.visible .popup-content {
+    transform: translateY(0);
+}
+
+/* Rimuovi il colore blu e la sottolineatura dai link */
+a {
+    color: black; /* Colore bianco per i link */
+    text-decoration: none; /* Rimuove la sottolineatura */
+}
+
+a:hover {
+    color: #800020; /* Colore per il passaggio del mouse, ad esempio un rosso scuro */
 }
 
 /* Gruppo di input */
@@ -68,40 +81,6 @@ textarea {
     height: 100px; /* Altezza definita per una migliore visibilità */
 }
 
-/* Stile del bottone */
-.btn {
-    background-color: #800020;
-    color: white;
-    padding: 8px 20px;
-    border: none;
-    border-radius: 8px; /* Bordo più morbido */
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    margin: 8px;
-}
-
-.btn:hover {
-    background-color: #990024;
-}
-
-/* Aggiunta effetto di traslazione per il popup */
-.popup.visible .popup-content {
-    transform: translateY(0);
-}
-
-/* Mostra popup */
-.popup.visible {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Nasconde il popup */
-.popup.hidden {
-    visibility: hidden;
-    opacity: 0;
-}
-
 /* Barra di ricerca */
 .search-container {
     margin: 75px auto;
@@ -111,25 +90,13 @@ textarea {
 }
 
 .search-container input {
-    padding: 15px;
+    padding: 14px;
     width: 40%;
     border: 1px solid #ccc;
     border-radius: 10px;
 }
 
-.search-container .search-btn,
-.search-container .upload-btn {
-    padding: 5px 20px;
-    background-color: #800020;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
 
-.search-btn:hover {
-    background-color: #a72626; /* Colore al passaggio del mouse */
-}
 
 /* Sezione documenti */
 .recent-similar {
@@ -172,68 +139,89 @@ textarea {
 }
 
 .upload-icon .upload-btn {
-    padding: 10px 20px;
-    background-color: #800020;
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
 }
 
-.upload-btn:hover {
-    background-color: #a72626;
+
+ 
+/* Stile base per i pulsanti */
+button,
+.btn,
+.search-btn,
+.upload-btn {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    padding: 1em 1.5em;
+    background: #800020;
+    border: 2px solid #5a0018;
+    border-radius: 0.75em;
+    transform-style: preserve-3d;
+    transition: 
+      transform 150ms cubic-bezier(0, 0, 0.58, 1), 
+      background 150ms cubic-bezier(0, 0, 0.58, 1);
 }
 
-/* Popup generale */
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
+button::before,
+.btn::before,
+.search-btn::before,
+.upload-btn::before {
+    position: absolute;
+    content: '';
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Sfondo più scuro per migliorare la visibilità */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    top: 0;
+    left: 0;
+    background: #990024;
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px #5a0018; 
+    transform: translate3d(0, 0.25em, -1em);
+    transition: 
+      transform 150ms cubic-bezier(0, 0, 0.58, 1), 
+      box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
 }
 
-/* Popup visibile */
-.popup.visible {
-    visibility: visible;
-    opacity: 1;
+button:hover,
+.btn:hover,
+.search-btn:hover,
+.upload-btn:hover {
+    background: #a72626;
+    transform: translate(0, 0.25em);
 }
 
-/* Contenuto del popup */
-.popup-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 450px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-}
-
-/* Aggiungi effetto di traslazione per il popup */
-.popup.visible .popup-content {
-    transform: translateY(0);
-}
-
-/* Rimuovi il colore blu e la sottolineatura dai link */
-a {
-    color: black; /* Colore bianco per i link */
-    text-decoration: none; /* Rimuove la sottolineatura */
-}
-
-a:hover {
-    color: #800020; /* Colore per il passaggio del mouse, ad esempio un rosso scuro */
+button:hover::before,
+.btn:hover::before,
+.search-btn:hover::before,
+.upload-btn:hover::before {
+    box-shadow: 0 0 0 2px #5a0018; 
+    transform: translate3d(0, 0, -1em);
 }
 
 
+button:active,
+.btn:active,
+.search-btn:active,
+.upload-btn:active {
+    background: #a72626;
+    transform: translate(0, 0.25em);
+}
 
+button:active::before,
+.btn:active::before,
+.search-btn:active::before,
+.upload-btn:active::before {
+    box-shadow: 0 0 0 2px #5a0018;
+    transform: translate3d(0, 0, -1em);
+}
