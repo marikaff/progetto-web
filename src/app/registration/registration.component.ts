@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -24,53 +24,48 @@ export class RegistrationComponent implements AfterViewInit {
         title.classList.add('no-cursor');
       }
     }, 1500);
+  }
 
-    const form = document.querySelector("form") as HTMLFormElement;
+  register(event: Event) {
+    event.preventDefault();
 
-    if (!form) {
-      console.error("Errore: Elementi del modulo non trovati.");
+    const emailValue = this.emailInput.nativeElement.value.trim();
+    const nomeValue = this.nomeInput.nativeElement.value.trim();
+    const cognomeValue = this.cognomeInput.nativeElement.value.trim();
+    const passwordValue = this.passwordInput.nativeElement.value;
+    const confirmPasswordValue = this.confirmPasswordInput.nativeElement.value;
+    const corsoDiStudioValue = parseInt(this.corsoDiStudioInput.nativeElement.value, 10);
+
+    if (!emailValue.endsWith("@studenti.unical.it")) {
+      alert("❌ L'email deve essere del dominio @studenti.unical.it.");
       return;
     }
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    if (!passwordRegex.test(passwordValue)) {
+      alert("❌ La password deve avere almeno 8 caratteri, una lettera maiuscola, una minuscola, un numero e un carattere speciale.");
+      return;
+    }
 
-      let valid = true;
+    if (passwordValue !== confirmPasswordValue) {
+      alert("❌ Le password non coincidono.");
+      return;
+    }
 
-      const emailValue = this.emailInput.nativeElement.value.trim();
-      if (!emailValue.endsWith("@studenti.unical.it")) {
-        alert("❌ L'email deve essere del dominio @studenti.unical.it.");
-        valid = false;
+    if (isNaN(corsoDiStudioValue)) {
+      alert("❌ Corso di studio non valido.");
+      return;
+    }
+
+    this.authService.register(emailValue, nomeValue, cognomeValue, passwordValue, corsoDiStudioValue).subscribe(
+      response => {
+        console.log('Registrazione avvenuta con successo:', response);
+        alert("✅ Registrazione completata con successo!");
+      },
+      error => {
+        console.error('Errore durante la registrazione:', error);
+        alert("❌ Errore nella registrazione, riprova.");
       }
-
-      const passwordValue = this.passwordInput.nativeElement.value;
-      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-      if (!passwordRegex.test(passwordValue)) {
-        alert("❌ La password deve avere almeno 8 caratteri, una lettera maiuscola, una minuscola, un numero e un carattere speciale.");
-        valid = false;
-      }
-
-      if (passwordValue !== this.confirmPasswordInput.nativeElement.value) {
-        alert("❌ Le password non coincidono.");
-        valid = false;
-      }
-
-      if (valid) {
-        const nomeValue = this.nomeInput.nativeElement.value;
-        const cognomeValue = this.cognomeInput.nativeElement.value;
-        const corsoDiStudioValue = this.corsoDiStudioInput.nativeElement.value;
-
-        this.authService.register(emailValue, nomeValue, cognomeValue, passwordValue, corsoDiStudioValue).subscribe(
-          response => {
-            console.log('Registrazione avvenuta con successo:', response);
-            alert("✅ Registrazione completata con successo!");
-          },
-          error => {
-            console.error('Errore durante la registrazione:', error);
-            alert("❌ Errore nella registrazione, riprova.");
-          }
-        );
-      }
-    });
+    );
   }
 }
