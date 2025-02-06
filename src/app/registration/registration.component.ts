@@ -1,4 +1,6 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -6,57 +8,58 @@ import { Component, AfterViewInit } from '@angular/core';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements AfterViewInit {
+  @ViewChild('email') emailInput!: ElementRef;
+  @ViewChild('password') passwordInput!: ElementRef;
+  @ViewChild('confirmPassword') confirmPasswordInput!: ElementRef;
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngAfterViewInit() {
-    // ✅ Togliere il cursore dopo 1.5 secondi
     setTimeout(() => {
       const title = document.querySelector('h1');
       if (title) {
         title.classList.add('no-cursor');
       }
-    }, 1500); 
+    }, 1500);
+  }
 
-    // ✅ Validazione del form con prevenzione dell'invio via GET
-    const form = document.querySelector("form") as HTMLFormElement;
-    const emailInput = document.getElementById("email") as HTMLInputElement;
-    const passwordInput = document.getElementById("password") as HTMLInputElement;
-    const confirmPasswordInput = document.getElementById("confirmPassword") as HTMLInputElement;
+  register(event: Event) {
+    event.preventDefault(); // 🔥 Evita il refresh della pagina
 
-    if (!form || !emailInput || !passwordInput || !confirmPasswordInput) {
-      console.error("Errore: Elementi del modulo non trovati.");
+    const emailValue = this.emailInput.nativeElement.value.trim();
+    const passwordValue = this.passwordInput.nativeElement.value;
+    const confirmPasswordValue = this.confirmPasswordInput.nativeElement.value;
+
+    // ✅ Controllo email
+    if (!emailValue.endsWith("@studenti.unical.it")) {
+      alert("❌ L'email deve essere del dominio @studenti.unical.it.");
       return;
     }
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault(); // 🔥 BLOCCA l'invio del form per evitare che i dati finiscano nell'URL
+    // ✅ Controllo password
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    if (!passwordRegex.test(passwordValue)) {
+      alert("❌ La password deve avere almeno 8 caratteri, una maiuscola, una minuscola, un numero e un carattere speciale.");
+      return;
+    }
 
-      let valid = true;
+    // ✅ Controllo conferma password
+    if (passwordValue !== confirmPasswordValue) {
+      alert("❌ Le password non coincidono.");
+      return;
+    }
 
-      // Controllo email
-      const emailValue = emailInput.value.trim();
-      if (!emailValue.endsWith("@studenti.unical.it")) {
-        alert("❌ L'email deve essere del dominio @studenti.unical.it.");
-        valid = false;
-      }
-
-      // Controllo password (minimo 8 caratteri, una maiuscola, una minuscola, un numero e un carattere speciale)
-      const passwordValue = passwordInput.value;
-      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-
-      if (!passwordRegex.test(passwordValue)) {
-        alert("❌ La password deve avere almeno 8 caratteri, una lettera maiuscola, una minuscola, un numero e un carattere speciale.");
-        valid = false;
-      }
-
-      // Controllo conferma password
-      if (passwordValue !== confirmPasswordInput.value) {
-        alert("❌ Le password non coincidono.");
-        valid = false;
-      }
-
-      if (valid) {
+    // 🔥 INVIA AL BACKEND
+    this.authService.register({ email: emailValue, password: passwordValue }).subscribe(
+      response => {
+        console.log("Registrazione riuscita:", response);
         alert("✅ Registrazione completata con successo!");
+        this.router.navigate(['/login']); // 🔄 Redirect alla pagina di login
+      },
+      error => {
+        console.error("Errore nella registrazione:", error);
+        alert("❌ Errore durante la registrazione. Riprova.");
       }
-    });
+    );
   }
 }

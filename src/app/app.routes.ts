@@ -9,7 +9,7 @@ import { ProfiloComponent } from './profilo/profilo.component';
 import { AdminComponent } from './admin/admin.component';
 import { DocComponent } from './doc/doc.component';
 import { ModificaPasswordComponent } from './modifica-password/modifica-password.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './services/auth.guard';
 
 
 

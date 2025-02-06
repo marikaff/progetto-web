@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({

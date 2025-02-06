@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements AfterViewInit {
   @ViewChild('email') emailInput!: ElementRef;
   @ViewChild('password') passwordInput!: ElementRef;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -23,27 +24,25 @@ export class LoginComponent implements AfterViewInit {
   }
 
   login(event: Event) {
-    event.preventDefault(); // Evita il refresh della pagina
+    event.preventDefault();
 
-    const username = this.emailInput.nativeElement.value;
+    const username = this.emailInput.nativeElement.value.trim();
     const password = this.passwordInput.nativeElement.value;
 
-    // Controlla se l'email contiene '@studenti.unical.it'
     if (!username.endsWith('@studenti.unical.it')) {
-      alert('L\'email deve essere del dominio @studenti.unical.it');
-      return; // Esce dalla funzione senza inviare la richiesta
+      alert("L'email deve essere del dominio @studenti.unical.it");
+      return;
     }
 
-    // Procedi con il login se la validazione dell'email è passata
-    this.authService.login(username, password).subscribe(
+    this.authService.login({ email: username, password }).subscribe(
       response => {
-        console.log('Login success:', response);
-        localStorage.setItem('isLoggedIn', 'true');
-        alert('Login successful!');
-        // Redirect alla home
+        console.log('Login riuscito:', response);
+        localStorage.setItem('token', response.token);
+        alert('Login effettuato con successo!');
+        this.router.navigate(['/home']); // Redirect alla home
       },
       error => {
-        console.error('Login failed:', error);
+        console.error('Errore di login:', error);
         alert('Credenziali errate!');
       }
     );

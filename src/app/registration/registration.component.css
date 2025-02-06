@@ -70,7 +70,8 @@
   }
   
   input[type="email"], 
-  input[type="password"] {
+  input[type="password"],
+  input[type="text"]{
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -155,4 +156,13 @@ button:active::before,
 .upload-btn:active::before {
     box-shadow: 0 0 0 2px #5a0018;
     transform: translate3d(0, 0, -1em);
+}
+
+a {
+  color: #800020;
+  text-decoration: none; /* Nessuna sottolineatura normalmente */
+}
+
+a:hover {
+  text-decoration: underline; /* Sottolineatura solo quando ci passi sopra */
 }
