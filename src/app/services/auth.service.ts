@@ -6,19 +6,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api/auth'; // Cambia con il tuo backend
+  private apiUrl = 'http://localhost:8080/'; // Cambia con il tuo backend
 
   constructor(private http: HttpClient) {}
 
   // ✅ LOGIN
   login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, { email, password });
+    return this.http.post(`${this.apiUrl}/doLogin`, { email, password });
   }
 
   // ✅ REGISTRAZIONE 
   register(email: string, nome: string, cognome: string, password: string, corsoDiStudio: number): Observable<any> {
     const userData = { email, nome, cognome, password, corsoDiStudio };
-    return this.http.post(`${this.apiUrl}/register`, userData);
+    return this.http.post(`${this.apiUrl}/registrazione`, userData);
   }
 
   // ✅ LOGOUT
