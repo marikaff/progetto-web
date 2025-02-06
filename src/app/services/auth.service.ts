@@ -10,23 +10,25 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials);
+  // ✅ LOGIN
+  login(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, { email, password });
   }
 
-  register(user: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, user);
+  // ✅ REGISTRAZIONE 
+  register(email: string, nome: string, cognome: string, password: string, corsoDiStudio: number): Observable<any> {
+    const userData = { email, nome, cognome, password, corsoDiStudio };
+    return this.http.post(`${this.apiUrl}/register`, userData);
   }
 
-
-  logout(): void {
-    localStorage.removeItem('user');
+  // ✅ LOGOUT
+  logout() {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('token');
   }
 
+  // ✅ CONTROLLO SE L'UTENTE È LOGGATO
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('user');
+    return localStorage.getItem('isLoggedIn') === 'true';
   }
-
 }
-  
- 

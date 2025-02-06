@@ -34,10 +34,11 @@ export class LoginComponent implements AfterViewInit {
       return;
     }
 
-    this.authService.login({ email: username, password }).subscribe(
+    this.authService.login(username, password).subscribe(
       response => {
         console.log('Login riuscito:', response);
         localStorage.setItem('token', response.token);
+        localStorage.setItem('isLoggedIn', 'true');
         alert('Login effettuato con successo!');
         this.router.navigate(['/home']); // Redirect alla home
       },
