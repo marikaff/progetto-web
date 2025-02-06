@@ -20,12 +20,14 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'registration', component: RegistrationComponent},
     {path: 'footer', component: FooterComponent},
-    { path: 'profilo', component: ProfiloComponent, canActivate: [AuthGuard] },
-    { path: 'modifica-password', component: ModificaPasswordComponent },
+    {path: 'profilo', component: ProfiloComponent, canActivate: [AuthGuard]},
+    {path: 'modifica-password', component: ModificaPasswordComponent},
     {path: 'admin', component: AdminComponent},
-    { path: 'login', component: LoginComponent },
 
     {path: 'doc/:id/:title/:subject/:year', component: DocComponent},
-    {path: '', redirectTo:'/home', pathMatch: 'full'}
+    {path: '', redirectTo:'/home', pathMatch: 'full'},
+
+    { path: '**', redirectTo: 'home' } //così l'utente viene reindirizzato ogni volta al login
+                                    //quando navig verso una rotta sconosciuta
 
 ];

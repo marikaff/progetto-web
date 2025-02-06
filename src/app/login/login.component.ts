@@ -1,18 +1,17 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements AfterViewInit {
+  @ViewChild('email') emailInput!: ElementRef;
+  @ViewChild('password') passwordInput!: ElementRef;
 
-  username: string = '';
-  password: string = '';
-  credentials = {
-    username: 'user@studenti.unical.it', // credenziali di prova
-    password: 'password'
-  };
+  constructor(private authService: AuthService) {}
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -20,33 +19,33 @@ export class LoginComponent implements AfterViewInit {
       if (title) {
         title.classList.add('no-cursor');
       }
-    }, 1500); // 1.5 secondi = durata dell'animazione typing
+    }, 1500);
   }
 
-  login() {
-    if (this.username === this.credentials.username && this.password === this.credentials.password) {
-      // Salva nel localStorage che l'utente è loggato
-      localStorage.setItem('isLoggedIn', 'true');
-      alert('Login successful!');
-      // Reindirizza alla home o pagina principale
-      // window.location.href = '/home'; // Usa il router di Angular per il reindirizzamento
-    } else {
-      alert('Credenziali errate!');
+  login(event: Event) {
+    event.preventDefault(); // Evita il refresh della pagina
+
+    const username = this.emailInput.nativeElement.value;
+    const password = this.passwordInput.nativeElement.value;
+
+    // Controlla se l'email contiene '@studenti.unical.it'
+    if (!username.endsWith('@studenti.unical.it')) {
+      alert('L\'email deve essere del dominio @studenti.unical.it');
+      return; // Esce dalla funzione senza inviare la richiesta
     }
-  }
 
-  checkLoginStatus() {
-    // Verifica se l'utente è loggato
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
-      // L'utente è già loggato
-      // Redirect a pagina principale (esempio: home)
-      // window.location.href = '/home';
-    }
+    // Procedi con il login se la validazione dell'email è passata
+    this.authService.login(username, password).subscribe(
+      response => {
+        console.log('Login success:', response);
+        localStorage.setItem('isLoggedIn', 'true');
+        alert('Login successful!');
+        // Redirect alla home
+      },
+      error => {
+        console.error('Login failed:', error);
+        alert('Credenziali errate!');
+      }
+    );
   }
-
-  ngOnInit() {
-    this.checkLoginStatus();
-  }
-
 }
