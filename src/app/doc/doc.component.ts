@@ -30,13 +30,14 @@ export class DocComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.document = {
-        id: +params.get('id')!,
-        title: params.get('title') || 'Senza titolo',
-        subject: params.get('subject') || 'Senza materia',
-        year: params.get('year') || 'Senza anno',
-        downloadUrl: '', // Evita errori di link
-      };
+      const docId = +params.get('id')!;
+    this.documentService.getDocumentById(docId).subscribe(
+      (data) => {
+        this.document = data;
+      },
+      (error) => {
+        console.error('Errore nel caricamento del documento:', error);}
+    );
     });
   }
 }
