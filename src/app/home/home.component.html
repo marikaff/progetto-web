@@ -1,59 +1,59 @@
 <main id="mainHome">
-    <div class="search-container">
-      <input type="text" placeholder="Cerca documenti">
-      <button class="search-btn">🔍</button>
-    </div>
-    <section class="recent-similar">
-      <h2 id="h2recent">Visti di recente e simili</h2>
+  <div class="search-container">
+    <input type="text" placeholder="Cerca documenti">
+    <button class="search-btn">🔍</button>
+  </div>
+  <section class="recent-similar">
+    <h2 id="h2recent">Visti di recente e simili</h2>
+    <div class="document-list">
       <div class="document-list">
-              
-        <div class="document-list">
-          <div class="document" *ngFor="let doc of documents">
-            <a [routerLink]="['/doc',doc.id, doc.title, doc.subject, doc.year]" >
-              <div class="thumbnail"></div>
-              <p>{{ doc.title }}</p>
-              <p>{{ doc.subject }}</p>
-              <p>{{ doc.year }}</p>
-            </a>
-          </div>
+        <div class="document" *ngFor="let doc of documents">
+          <a [routerLink]="['/doc',doc.id, doc.title, doc.subject, doc.year]" >
+            <div class="thumbnail"></div>
+            <p>{{ doc.title }}</p>
+            <p>{{ doc.subject }}</p>
+            <p>{{ doc.year }}</p>
+          </a>
         </div>
       </div>
-      
-        
-    </section>
-  
-    <div class="upload-icon">
-      <button class="upload-btn" (click)="fileInput.click()">📤 Carica documento</button>
-      <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
     </div>
-  
-    <div id="fileList">
-      <div *ngFor="let file of fileList">
-        📄 {{ file.name }} <span>({{ (file.size / 1024).toFixed(2) }} KB)</span>
-      </div>
+  </section>
+
+  <div class="upload-icon">
+    <p></p>
+    <h3>Carica documento</h3>
+    <p>⬇︎</p>
+    <input type="file" (change)="onFileSelected($event)">
+    <button (click)="uploadDocument(docName.value, subject.value, description.value)">📤 Carica</button>
+  </div>
+
+  <div id="fileList">
+    <div *ngFor="let file of fileList">
+      📄 {{ file.name }} <span>({{ (file.size / 1024).toFixed(2) }} KB)</span>
     </div>
-  
-   <!-- Popup visibile solo quando popupVisible è true -->
-<div [class.visible]="popupVisible" class="popup">
+  </div>
+
+  <!-- Popup visibile solo quando popupVisible è true -->
+  <div [class.visible]="popupVisible" class="popup">
     <div class="popup-content">
       <h2>Dettagli Documento</h2>
       <form (submit)="saveDocumentDetails(docName.value, subject.value, description.value)">
         <div class="form-group">
-            <label for="docName">Nome Documento:</label>
-            <input type="text" id="docName" [value]="selectedFile?.name" required #docName>
-          </div>
-          <div class="form-group">
-            <label for="subject">Materia:</label>
-            <input type="text" id="subject" required #subject>
-          </div>
-          <div class="form-group">
-            <label for="description">Descrizione:</label>
-            <textarea id="description" rows="3" required #description></textarea>
-          </div>
-          <button type="submit" class="btn">Salva</button>
-        </form>
+          <label for="docName">Nome Documento:</label>
+          <input type="text" id="docName" [value]="selectedFile?.name" required #docName>
+        </div>
+        <div class="form-group">
+          <label for="subject">Materia:</label>
+          <input type="text" id="subject" required #subject>
+        </div>
+        <div class="form-group">
+          <label for="description">Descrizione:</label>
+          <textarea id="description" rows="3" required #description></textarea>
+        </div>
+        <button type="submit" class="btn">Salva</button>
+        <p></p>
+      </form>
       <button (click)="closePopup()" class="btn">Chiudi</button>
     </div>
   </div>
-
-  </main>
+</main>

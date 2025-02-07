@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class DocumentService {
-  private apiUrl = 'http://localhost:8080/api/documento'; // Sostituisci con l'URL del backend
+  private apiUrl = 'http://localhost:8080/api/documento'; // URL del backend
 
   constructor(private http: HttpClient) {}
 
@@ -16,5 +16,9 @@ export class DocumentService {
 
   getDocumentById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+
+  uploadDocument(formData: FormData): Observable<any> {
+    return this.http.post(this.apiUrl, formData);
   }
 }
