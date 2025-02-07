@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importazione per ngIf
 import { RouterLink } from '@angular/router';
+
+import { DocumentService } from '../services/document.service';
 
 @Component({
   selector: 'app-home',
@@ -9,20 +11,28 @@ import { RouterLink } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   
   fileList: { name: string, size: number }[] = [];
   popupVisible: boolean = false; // Variabile per controllare la visibilità del popup
   selectedFile: any;
 
-  //!DOCUMENTI CHE VANNO PRESI DAL BACK DAL DATABASE !!!!!!!!!!!!!!!!!
-  documents = [
-    { id: 1, title: 'Ingegneria software appunti', subject: 'Ingegneria Informatica', year: 'A.A. 2023/24' },
-    { id: 2, title: 'Design Patterns', subject: 'Informatica', year: 'A.A. 2022/23' },
-    { id: 3, title: 'Appunti Basi di dati 2022-2023', subject: 'Ingegneria Gestionale', year: 'A.A. 2024/25' },
-    { id: 4, title: 'Fisica di base', subject: 'Biotecnologie', year: 'A.A. 2023/24' },
-    { id: 5, title: 'Analisi Matematica 1', subject: 'Ingegneria Meccanica', year: 'A.A. 2021/22' }
-  ];
+  documents: any[] = [];
+  constructor(private documentService: DocumentService) {}
+
+  ngOnInit(): void {
+    this.documentService.getDocuments().subscribe(
+      (data) => {
+        this.documents = data;
+      },
+      (error) => {
+        console.error('Errore nel recupero dei documenti:', error);
+      }
+    );
+  }
+
+
+
 
   
   onFileSelected(event: any) {
