@@ -52,11 +52,6 @@ export class RegistrationComponent implements AfterViewInit {
       return;
     }
 
-    if (isNaN(corsoDiStudioValue)) {
-      alert("❌ Corso di studio non valido.");
-      return;
-    }
-
     this.authService.register(emailValue, nomeValue, cognomeValue, passwordValue, corsoDiStudioValue).subscribe(
       response => {
         console.log('Registrazione avvenuta con successo:', response);

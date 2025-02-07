@@ -26,10 +26,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-
-
-              
+            "styles": [              
               "src/styles.css",
               "https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
             ],
@@ -61,6 +58,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig" : "src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "web:build:production"
@@ -95,7 +95,7 @@
           }
         }
       }
-    }
+    } 
   },
   "cli": {
     "analytics": false
