@@ -5,10 +5,9 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { ProfiloComponent } from './profilo/profilo.component';
-import { AdminComponent } from './admin/admin.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ChangepwdComponent } from './changepwd/changepwd.component';
 import { DocComponent } from './doc/doc.component';
-import { ModificaPasswordComponent } from './modifica-password/modifica-password.component';
 import { AuthGuard } from './services/auth.guard';
 
 
@@ -20,9 +19,8 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'registration', component: RegistrationComponent},
     {path: 'footer', component: FooterComponent},
-    {path: 'profilo', component: ProfiloComponent, canActivate: [AuthGuard]},
-    {path: 'modifica-password', component: ModificaPasswordComponent},
-    {path: 'admin', component: AdminComponent},
+    {path: 'profile', component: ProfileComponent},
+    {path: 'change-password', component: ChangepwdComponent},
 
     {path: 'doc/:id/:title/:subject/:year', component: DocComponent},
     {path: '', redirectTo:'/home', pathMatch: 'full'},

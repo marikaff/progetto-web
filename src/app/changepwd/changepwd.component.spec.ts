@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfiloComponent } from './profilo.component';
+import { ChangepwdComponent } from './changepwd.component';
 
-describe('ProfiloComponent', () => {
-  let component: ProfiloComponent;
-  let fixture: ComponentFixture<ProfiloComponent>;
+describe('ChangepwdComponent', () => {
+  let component: ChangepwdComponent;
+  let fixture: ComponentFixture<ChangepwdComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProfiloComponent]
+      imports: [ChangepwdComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProfiloComponent);
+    fixture = TestBed.createComponent(ChangepwdComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

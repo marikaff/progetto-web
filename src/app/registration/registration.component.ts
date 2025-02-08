@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-registration',
@@ -34,7 +35,7 @@ export class RegistrationComponent implements AfterViewInit {
     const cognomeValue = this.cognomeInput.nativeElement.value.trim();
     const passwordValue = this.passwordInput.nativeElement.value;
     const confirmPasswordValue = this.confirmPasswordInput.nativeElement.value;
-    const corsoDiStudioValue = parseInt(this.corsoDiStudioInput.nativeElement.value, 10);
+    const corsoDiStudioValue = this.corsoDiStudioInput.nativeElement.value.trim();
 
     if (!emailValue.endsWith("@studenti.unical.it")) {
       alert("❌ L'email deve essere del dominio @studenti.unical.it.");
