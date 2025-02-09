@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChangepwdComponent } from './changepwd/changepwd.component';
 import { DocComponent } from './doc/doc.component';
 import { AuthGuard } from './services/auth.guard';
+import { AdminComponent } from './admin/admin.component';
 
 
 
@@ -19,8 +20,11 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'registration', component: RegistrationComponent},
     {path: 'footer', component: FooterComponent},
+    
+    
     {path: 'profile', component: ProfileComponent},
     {path: 'change-password', component: ChangepwdComponent},
+    {path: 'admin', component: AdminComponent},
 
     {path: 'doc/:id/:title/:subject/:year', component: DocComponent},
     {path: '', redirectTo:'/home', pathMatch: 'full'},
