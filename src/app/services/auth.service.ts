@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,25 +11,30 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // ✅ LOGIN
+  //LOGIN
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/doLogin`, { email, password });
   }
 
-  // ✅ REGISTRAZIONE 
+  //REGISTRAZIONE 
   register(email: string, nome: string, cognome: string, password: string, corsoDiStudio: number): Observable<any> {
     const userData = { email, nome, cognome, password, corsoDiStudio };
     return this.http.post(`${this.apiUrl}/registrazione`, userData);
   }
 
-  // ✅ LOGOUT
+  //LOGOUT
   logout() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('token');
+    localStorage.removeItem('isAdmin');
   }
 
-  // ✅ CONTROLLO SE L'UTENTE È LOGGATO
+  //CONTROLLO SE L'UTENTE È LOGGATO
   isLoggedIn(): boolean {
     return localStorage.getItem('isLoggedIn') === 'true';
+  }
+
+  isAdmin(): boolean {
+    return localStorage.getItem('isAdmin') === 'true';
   }
 }

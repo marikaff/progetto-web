@@ -67,26 +67,6 @@
     outline: none;
   }
   
-  /* Bottone "Change" */
-  .change-button {
-    background-color: #007bff;
-    color: white;
-    padding: 12px;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .change-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .change-button:disabled {
-    background-color: #b0c7e1;
-    cursor: not-allowed;
-  }
   
   /* Messaggio di errore */
   .error-message {

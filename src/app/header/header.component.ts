@@ -16,7 +16,7 @@ export class HeaderComponent {
   toggleTheme(event: any) {
     const ids = ["mainHome","h2recent","header","footer","documentSection","popup","login-container"];
 
-    const backgroundColor = event.target.checked ? "rgb(46, 37, 37)" : "white"; // Sfondo scuro o chiaro
+    const backgroundColor = event.target.checked ? "rgb(28, 25, 25)" : "white"; // Sfondo scuro o chiaro
     const textColor = event.target.checked ? "white" : "black"; // Testo bianco solo nel tema scuro
     
     ids.forEach((id) => {
@@ -30,6 +30,6 @@ export class HeaderComponent {
     document.body.style.setProperty("background-color", backgroundColor, "important");
     document.body.style.setProperty("color", textColor, "important");
 
-    console.log(`Tema ${event.target.checked ? 'scuro' : 'chiaro'} attivato`);
+    //console.log(`Tema ${event.target.checked ? 'scuro' : 'chiaro'} attivato`);
     }
   }
