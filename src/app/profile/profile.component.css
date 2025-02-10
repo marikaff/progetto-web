@@ -51,8 +51,8 @@
   .profile-button {
     padding: 10px 15px;
     font-size: 1rem;
-    border: 1px solid #007bff;
-    background-color: #007bff;
+    border: 1px solid #800020;
+    background-color: #800020;
     color: white;
     border-radius: 5px;
     cursor: pointer;
@@ -60,8 +60,8 @@
   }
   
     .profile-button:hover {
-      background-color: #0056b3;
-      border-color: #0056b3;
+      background-color: #800020;
+      border-color: #800020;
     }
   
   /* Sezione destra (contenuti aggiuntivi) */
@@ -103,3 +103,12 @@
     }
   }
   
+
+  a {
+    color: white;
+    text-decoration: none; /* Rimuove la sottolineatura */
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Aggiunge sottolineatura al passaggio del mouse */
+  }
