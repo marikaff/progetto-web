@@ -1,51 +1,57 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements AfterViewInit {
-  @ViewChild('email') emailInput!: ElementRef;
-  @ViewChild('password') passwordInput!: ElementRef;
+export class LoginComponent {
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private authService = inject(AuthService);
 
-  constructor(private authService: AuthService, private router: Router) {}
+  isLoading = false;
+  showPassword = false;
+  errorMessage: string | null = null;
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      const title = document.querySelector('h1');
-      if (title) {
-        title.classList.add('no-cursor');
+  loginForm = this.fb.nonNullable.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(64),
+      Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)
+    ]]
+  });
+
+  get emailControl() { return this.loginForm.controls.email; }
+  get passwordControl() { return this.loginForm.controls.password; }
+
+  onSubmit(): void {
+    if (this.loginForm.invalid || this.isLoading) return;
+
+    this.isLoading = true;
+    this.errorMessage = null;
+
+    this.authService.login(this.loginForm.getRawValue()).subscribe({
+      next: () => {
+        const returnUrl = this.router.parseUrl(this.router.url).queryParams['returnUrl'] || '/dashboard';
+        this.router.navigateByUrl(returnUrl);
+      },
+      error: (error) => {
+        this.isLoading = false;
+        this.errorMessage = error.error?.message || 'Login failed. Please try again.';
       }
-    }, 1500);
+    });
   }
 
-  login(event: Event) {
-    event.preventDefault();
-
-    const username = this.emailInput.nativeElement.value.trim();
-    const password = this.passwordInput.nativeElement.value;
-
-    if (!username.endsWith('@studenti.unical.it')) {
-      alert("L'email deve essere del dominio @studenti.unical.it");
-      return;
-    }
-
-    this.authService.login(username, password).subscribe(
-      response => {
-        console.log('Login riuscito:', response);
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('isLoggedIn', 'true');
-        alert('Login effettuato con successo!');
-        this.router.navigate(['/home']); // Redirect alla home
-      },
-      error => {
-        console.error('Errore di login:', error);
-        alert('Credenziali errate!');
-      }
-    );
+  // Metodo per toggle mostra/nascondi password
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }

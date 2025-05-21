@@ -1,24 +1,40 @@
+<!-- header.component.html -->
+<header class="app-header">
+  <div class="header-content">
+    <a routerLink="/" class="logo-link">
+      <img ngSrc="/assets/new_logo2.png" alt="Notes4UniCal Logo" class="logo-image">
+    </a>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-<header>
-    <div class="logo">
-        <h1><a [routerLink]="['/home']">NOTES4UNICAL</a></h1>
-    </div>
-    <nav>
-        <div class="toggle-container">
-            <label class="switch">
-                <input type="checkbox" class="switch-input" (change)="toggleTheme($event)">
-                <span class="slider">
-                    <i class="bi bi-sun-fill sun-icon"></i>
-                    <i class="bi bi-moon-fill moon-icon"></i>
-                </span>
-            </label>
+    <nav class="navigation">
+      @if (isLoggedIn) {
+        <div class="user-menu">
+          <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
+            <mat-icon>account_circle</mat-icon>
+            <span>{{currentUser?.firstName || 'Account'}}</span>
+          </button>
+          <mat-menu #userMenu="matMenu">
+            <button mat-menu-item routerLink="/dashboard">
+              <mat-icon>dashboard</mat-icon>
+              <span>Dashboard</span>
+            </button>
+            @if (currentUser?.role === 'ADMIN') {
+              <button mat-menu-item routerLink="/admin">
+                <mat-icon>admin_panel_settings</mat-icon>
+                <span>Admin Panel</span>
+              </button>
+            }
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
         </div>
-        <a [routerLink]="['/preferiti']">Preferiti</a>
-        <a [routerLink]="['/profile']">Profilo</a>
-        <a [routerLink]="['/login']">Login</a>
+      } @else {
+        <a routerLink="/login" class="login-button">
+          <i class="bi bi-person-circle"></i>
+          <span>Accedi</span>
+        </a>
+      }
     </nav>
+  </div>
 </header>
-
-  

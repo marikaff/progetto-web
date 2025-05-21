@@ -1,0 +1,58 @@
+<!-- admin-page.component.html -->
+<div class="admin-container">
+  <mat-card class="admin-card">
+    <div class="admin-header">
+      <div class="admin-title">
+        <h1>Administration Panel</h1>
+        <p class="welcome-message">Welcome Back, {{currentAdmin?.firstName}} {{currentAdmin?.lastName}}</p>
+      </div>
+      <button mat-icon-button class="logout-button" (click)="logout()" matTooltip="Logout">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+    
+    <mat-divider></mat-divider>
+
+    <div class="admin-info-section">
+      <div class="info-item">
+        <mat-icon>email</mat-icon>
+        <span>{{currentAdmin?.email}}</span>
+      </div>
+      <div class="info-item">
+        <mat-icon>calendar_today</mat-icon>
+        <span>Last Seen: {{lastLogin}}</span>
+      </div>
+      <div class="info-item">
+        <mat-icon>schedule</mat-icon>
+        <span>Current Time: {{currentTime}}</span>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="admin-actions">
+      <h2>Azioni Amministrative</h2>
+      <div class="actions-grid">
+        <button mat-raised-button color="primary" routerLink="/admin/users" class="action-button">
+          <mat-icon>people</mat-icon>
+          <span>Gestione Utenti</span>
+        </button>
+        
+        <button mat-raised-button color="primary" routerLink="/admin/documents" class="action-button">
+          <mat-icon>folder</mat-icon>
+          <span>Gestione Documenti</span>
+        </button>
+        
+        <button mat-raised-button color="primary" routerLink="/admin/settings" class="action-button">
+          <mat-icon>settings</mat-icon>
+          <span>Impostazioni</span>
+        </button>
+        
+        <button mat-raised-button color="primary" routerLink="/admin/reports" class="action-button">
+          <mat-icon>report</mat-icon>
+          <span>Report</span>
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>

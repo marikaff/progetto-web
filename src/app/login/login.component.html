@@ -1,21 +1,92 @@
 <div class="login-container">
-  <div class="login-left">
-    <h1>LOGIN</h1>
-    <h4>È un piacere rivederti!</h4>
+  <h2>Login</h2>
 
-    <form (submit)="login($event)">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="std01@studenti.unical.it" #email required>
-      <p></p>
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="********" #password required>
-      <p></p>
-      <button type="submit" class="btn btn-signin">Login</button>
-    </form>
-
-    <div class="link-container">
-      <p>Non hai un account? <a href="/registration">Registrati</a></p>
-      <p><a href="/change-password">Hai dimenticato la password?</a></p>
+  <!-- Messaggio errore generale del form -->
+  @if (loginForm.errors?.['serverError']) {
+    <div class="alert alert-danger">
+      {{ loginForm.errors?.['serverError'] }}
     </div>
+  }
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+    <!-- Campo Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        [class.is-invalid]="emailControl.invalid && (emailControl.touched || emailControl.dirty)"
+        placeholder="Inserisci la tua email"
+        autocomplete="username"
+      />
+      
+      @if (emailControl.invalid && (emailControl.touched || emailControl.dirty)) {
+        <div class="invalid-feedback">
+          @if (emailControl.errors?.['required']) {
+            <div>L'email è obbligatoria</div>
+          }
+          @if (emailControl.errors?.['email']) {
+            <div>Inserisci un'email valida</div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Campo Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="password-input-group">
+        <input
+          id="password"
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+          [class.is-invalid]="passwordControl.invalid && (passwordControl.touched || passwordControl.dirty)"
+          placeholder="Inserisci la password"
+          autocomplete="current-password"
+        />
+        <button 
+          type="button" 
+          class="toggle-password"
+          (click)="togglePasswordVisibility()"
+        >
+          {{ showPassword ? 'Nascondi' : 'Mostra' }}
+        </button>
+      </div>
+      
+      @if (passwordControl.invalid && (passwordControl.touched || passwordControl.dirty)) {
+        <div class="invalid-feedback">
+          @if (passwordControl.errors?.['required']) {
+            <div>La password è obbligatoria</div>
+          }
+          @if (passwordControl.errors?.['minlength']) {
+            <div>Minimo {{ passwordControl.errors?.['minlength'].requiredLength }} caratteri</div>
+          }
+          @if (passwordControl.errors?.['pattern']) {
+            <div>Deve contenere maiuscole, minuscole, numeri e caratteri speciali</div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Bottone Submit -->
+    <button 
+      type="submit" 
+      class="submit-button"
+      [disabled]="loginForm.invalid || isLoading"
+    >
+      @if (isLoading) {
+        <span class="spinner"></span>
+        Accesso in corso...
+      } @else {
+        Accedi
+      }
+    </button>
+  </form>
+
+  <!-- Link aggiuntivi -->
+  <div class="additional-links">
+    <a routerLink="/passrec">Password dimenticata?</a>
+    <a routerLink="/register">Non hai un account? Registrati</a>
   </div>
 </div>

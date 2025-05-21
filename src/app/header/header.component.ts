@@ -1,35 +1,42 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { NgOptimizedImage, CommonModule } from '@angular/common';
+import { AuthService } from '../auth/auth.service';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule],
+  imports: [
+    RouterModule, 
+    NgOptimizedImage,
+    CommonModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule
+  ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 
+export class HeaderComponent implements OnInit {
+  isLoggedIn = false;
+  currentUser: any;
 
-export class HeaderComponent {
-  constructor(private renderer: Renderer2) {}
+  constructor(public themeService: ThemeService, private authService: AuthService) { }
 
-  toggleTheme(event: any) {
-    const ids = ["mainHome","h2recent","header","footer","documentSection","popup","login-container"];
-
-    const backgroundColor = event.target.checked ? "rgb(28, 25, 25)" : "white"; // Sfondo scuro o chiaro
-    const textColor = event.target.checked ? "white" : "black"; // Testo bianco solo nel tema scuro
-    
-    ids.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) {
-          element.style.setProperty("background-color", backgroundColor, "important");
-          element.style.setProperty("color", textColor, "important");
-      }
-  });
-
-    document.body.style.setProperty("background-color", backgroundColor, "important");
-    document.body.style.setProperty("color", textColor, "important");
-
-    //console.log(`Tema ${event.target.checked ? 'scuro' : 'chiaro'} attivato`);
-    }
+  ngOnInit() {
+    this.authService.currentUser$.subscribe(user => {
+      this.isLoggedIn = this.authService.isAuthenticated();
+      this.currentUser = user;
+    });
   }
+
+  logout() {
+    this.authService.logout();
+  }
+  
+}

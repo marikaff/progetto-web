@@ -45,11 +45,3 @@ usare un api che come ti registri ti arriva una mail di conferma nella mail spec
 !!
 fare controllo nel login, se le credenziali sono uguali a "admin@studenti.unical.it" "admin123" apre la pagina dell'amministratore
 !!
-
-
-
-
-
-
-
-

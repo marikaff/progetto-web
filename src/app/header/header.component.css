@@ -1,117 +1,84 @@
-body {
-    padding-top: 70px; /* Altezza dell'header */
+/* header.component.css */
+.app-header {
+  background-color: #800020;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0.8rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-header {
-    background-color: #800020; /* Bordeaux */
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 98%;
-    z-index: 10;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+.theme-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin-right: 1rem;
 }
 
-header .logo h1 {
-    font-size: 26px;
-    margin: 0;
-    padding: 0;
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-header .logo a {
-    text-decoration: none;
-    color: white;
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
-header nav {
-    display: flex;
-    align-items: center;
+.logo-image {
+  height: 40px;
+  width: auto;
+  transition: transform 0.3s ease;
 }
 
-header nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
+.logo-image:hover {
+  transform: scale(1.05);
 }
 
-header nav a:hover {
-    text-decoration: underline;
+.login-button, .user-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
 }
 
-/* Contenitore che allinea lo switch e il link Preferiti orizzontalmente */
-header .toggle-container {
-    display: flex;
-    align-items: center;
-    margin-right: 1px; /* Distanza tra il contenitore e il resto dei link */
+.login-button:hover, .user-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Lo switch */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 40px; /* Aumentato per fare lo switch più lungo */
-    height: 20px;
-    margin-right: 10px; /* Distanza tra lo switch e il link Preferiti */
+.user-button mat-icon {
+  margin-right: 0.5rem;
 }
 
-/* Rendi invisibile l'input */
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* Stile dello slider (lo switch) */
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #dcbb02; /* Giallo quando spento */
-    transition: 0.8s;
-    border-radius: 34px;
-    display: flex;
-    justify-content: space-between; /* Distribuisce le icone ai bordi */
-    align-items: center;
-    padding: 0 5px; /* Spazio tra le icone e i bordi */
-}
-
-/* Cambia colore quando lo switch è acceso */
-input:checked + .slider{
-    background-color: #074f9b; /* Blu quando attivo */
-}
-
-/* Posiziona correttamente le icone */
-.sun-icon,
-.moon-icon {
-    color: white;
-    font-size: 14px;
-    transition: 0.4s;
-}
-
-/* Quando è attivo, nascondi l'icona del sole e mostra quella della luna */
-input:checked + .slider .sun-icon {
-   
-    opacity: 0;
-}
-
-input:checked + .slider .moon-icon {
-    opacity: 1;
-}
-
-/* Quando è spento, nascondi l'icona della luna e mostra quella del sole */
-input:not(:checked) + .slider .sun-icon {
-    opacity: 1;
-}
-
-input:not(:checked) + .slider .moon-icon {
-    opacity: 0;
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0.8rem 1rem;
+  }
+  
+  .login-button span, .user-button span {
+    display: none;
+  }
+  
+  .login-button, .user-button {
+    padding: 0.5rem;
+    border-radius: 50%;
+  }
 }

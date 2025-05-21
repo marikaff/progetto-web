@@ -1,75 +1,153 @@
 @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css');
 
+.modern-footer {
+  background-color: #800020;
+  color: white;
+  padding: 2rem 1rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
 
+.modern-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b6b, #800020);
+  animation: gradient-shift 8s ease infinite;
+}
 
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 
-footer {
-    background-color: #800020;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 99%;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
-    font-size: 14px;
-    height: 60px;
+.footer-section {
+  margin-bottom: 1.5rem;
 }
-.footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    text-align: center;
+
+.footer-title {
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  position: relative;
+  display: inline-block;
 }
-.company-info {
-    flex: 1;
-    text-align: left;
+
+.footer-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
 }
-.company-info p {
-    margin: 3px 0;
+
+.footer-title:hover::after {
+  width: 80px;
 }
-.company-info a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+
+.footer-links {
+  list-style: none;
+  padding: 0;
 }
-.company-info a:hover {
-    text-decoration: underline;
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-.social-links {
-    display: flex;
-    justify-content: center;
-    flex: 1;
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
 }
-.social-links a {
-    margin: 0 8px;
-    color: white;
-    font-size: 20px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: white;
+  transition: width 0.3s ease;
 }
-.social-links a i {
-    font-size: 24px;
+
+.footer-links a:hover::after {
+  width: 100%;
 }
-.social-links a:hover {
-    color: #ddd;
+
+.footer-links i {
+  font-size: 1.1rem;
 }
-.unical-link {
-    flex: 1;
-    text-align: right;
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 200px;
 }
-.unical-link a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
 }
-.unical-link a:hover {
-    text-decoration: underline;
+
+.social-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Colori specifici per social */
+.instagram:hover { background: #E1306C; }
+.facebook:hover { background: #3b5998; }
+.linkedin:hover { background: #0077b5; }
+.github:hover { background: #333; }
+.twitter:hover { background: #000; }
+.tiktok:hover { background: #25F4EE; }
+
+.copyright {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+}
+
+/* Animazioni */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .social-grid {
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 100%;
+  }
 }

@@ -1,8 +1,5 @@
-export interface User {
-    name?: string, 
-    surname?: string, 
-    email?: string, 
-    pwd?: string, 
-    cds?: string,
-    imageProfile?: ArrayBuffer 
+export interface user {
+    name: string,
+    surname: string,
+    cds: string,
 }

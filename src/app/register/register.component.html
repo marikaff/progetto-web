@@ -1,0 +1,162 @@
+<div class="register-container">
+  <h2>Crea un account</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+    <!-- Nome -->
+    <div class="form-group">
+      <label for="firstName">Nome</label>
+      <input
+        id="firstName"
+        type="text"
+        formControlName="firstName"
+        [class.is-invalid]="firstName.invalid && (firstName.touched || firstName.dirty)"
+        placeholder="Mario"
+        autocomplete="given-name"
+      />
+      
+      @if (firstName.invalid && (firstName.touched || firstName.dirty)) {
+        <div class="invalid-feedback">
+          @if (firstName.errors?.['required']) {
+            <div>Il nome è obbligatorio</div>
+          }
+          @if (firstName.errors?.['minlength']) {
+            <div>Minimo {{ firstName.errors?.['minlength'].requiredLength }} caratteri</div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Cognome -->
+    <div class="form-group">
+      <label for="lastName">Cognome</label>
+      <input
+        id="lastName"
+        type="text"
+        formControlName="lastName"
+        [class.is-invalid]="lastName.invalid && (lastName.touched || lastName.dirty)"
+        placeholder="Rossi"
+        autocomplete="family-name"
+      />
+      
+      @if (lastName.invalid && (lastName.touched || lastName.dirty)) {
+        <div class="invalid-feedback">
+          @if (lastName.errors?.['required']) {
+            <div>Il cognome è obbligatorio</div>
+          }
+          @if (lastName.errors?.['minlength']) {
+            <div>Minimo {{ lastName.errors?.['minlength'].requiredLength }} caratteri</div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Facoltà (Select) -->
+    <div class="form-group">
+      <label for="faculty">Facoltà</label>
+      <select
+        id="faculty"
+        formControlName="faculty"
+        [class.is-invalid]="faculty.invalid && (faculty.touched || faculty.dirty)"
+      >
+        <option value="" disabled selected>Seleziona la tua facoltà</option>
+        @for (faculty of faculties; track faculty) {
+          <option [value]="faculty">{{ faculty }}</option>
+        }
+      </select>
+      
+      @if (faculty.invalid && (faculty.touched || faculty.dirty)) {
+        <div class="invalid-feedback">Seleziona una facoltà valida</div>
+      }
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        [class.is-invalid]="email.invalid && (email.touched || email.dirty)"
+        placeholder="mario.rossi@example.com"
+        autocomplete="email"
+      />
+      
+      @if (email.invalid && (email.touched || email.dirty)) {
+        <div class="invalid-feedback">
+          @if (email.errors?.['required']) {
+            <div>L'email è obbligatoria</div>
+          }
+          @if (email.errors?.['email']) {
+            <div>Inserisci un'email valida</div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="password-input-group">
+        <input
+          id="password"
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+          [class.is-invalid]="password.invalid && (password.touched || password.dirty)"
+          placeholder="Crea una password"
+          autocomplete="new-password"
+        />
+        <button 
+          type="button" 
+          class="toggle-password"
+          (click)="togglePasswordVisibility()"
+        >
+          {{ showPassword ? 'Nascondi' : 'Mostra' }}
+        </button>
+      </div>
+      
+      @if (password.invalid && (password.touched || password.dirty)) {
+        <div class="invalid-feedback">
+          @if (password.errors?.['required']) {
+            <div>La password è obbligatoria</div>
+          }
+          @if (password.errors?.['minlength']) {
+            <div>Minimo {{ password.errors?.['minlength'].requiredLength }} caratteri</div>
+          }
+          @if (password.errors?.['pattern']) {
+            <div>Deve contenere maiuscole, minuscole, numeri e caratteri speciali</div>
+          }
+        </div>
+      } @else {
+        <div class="password-hints">
+          <p>La password deve contenere:</p>
+          <ul>
+            <li>8+ caratteri</li>
+            <li>1 lettera maiuscola</li>
+            <li>1 numero</li>
+            <li>1 carattere speciale</li>
+          </ul>
+        </div>
+      }
+    </div>
+
+    <!-- Submit Button -->
+    <button 
+      type="submit" 
+      class="submit-button"
+      [disabled]="registerForm.invalid || isLoading"
+    >
+      @if (isLoading) {
+        <span class="spinner"></span>
+        Registrazione in corso...
+      } @else {
+        Registrati
+      }
+    </button>
+  </form>
+
+  <div class="login-link">
+    <p>Hai già un account? 
+        <a routerLink='/login' routerLinkActive="active">Accedi</a>
+    </p>
+  </div>
+</div>

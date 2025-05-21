@@ -2,31 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentService } from '../services/document.service';
 
-
 @Component({
   selector: 'app-doc',
   templateUrl: './doc.component.html',
   styleUrls: ['./doc.component.css'],
 })
 export class DocComponent implements OnInit {
-  
-   isFavorite = false;
-     toggleFavorite() {
-         this.isFavorite = !this.isFavorite;
-     }
-
+  isFavorite = false;
     
-  document: any;
+  toggleFavorite() {
+    this.isFavorite = !this.isFavorite;
+  }
 
+  document: any;
 
   constructor(
     private route: ActivatedRoute,
     private documentService: DocumentService
   ) {}
-
-  //cosi prende i documenti dalla pagina home (o dal back)
-
-
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {

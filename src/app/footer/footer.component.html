@@ -1,24 +1,64 @@
-<body>
-    <footer>
-        <div class="footer-content">
-            <div class="company-info">
-                <p><strong>Telefono:</strong> +39 0984 123456</p>
-                <p><strong>P.IVA:</strong> 01234567890</p>
-                <p><strong>Sede legale:</strong> <a href="https://www.google.com/maps?q=Via+Pietro+Bucci,+Rende" target="_blank">Via Pietro Bucci, 87036 Rende (CS), Italia</a></p>
-            </div>
-            <div class="social-links">
+<footer class="modern-footer">
+  <div class="footer-container">
+    <!-- Sezione Contatti -->
+    <div class="footer-section">
+      <h3 class="footer-title">Contatti</h3>
+      <ul class="footer-links">
+        <li>
+          <i class="bi bi-telephone"></i>
+          <span>+39 0984 123456</span>
+        </li>
+        <li>
+          <i class="bi bi-envelope"></i>
+          <a href="mailto:notes4@unical.edu">notes4&#64;unical.edu</a>
+        </li>
+        <li>
+          <i class="bi bi-geo-alt"></i>
+          <a href="https://www.google.com/maps?q=Via+Pietro+Bucci,+Rende" target="_blank">
+            Via Pietro Bucci, 87036 Rende (CS)
+          </a>
+        </li>
+      </ul>
+    </div>
 
-                <!-- ho usato bootstrap per prendere le icone e le ho richiamate nel file angular.json -->
-                <a href="https://www.instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
-                <a href="https://www.facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
-                <a href="https://www.tiktok.com" target="_blank"><i class="bi bi-tiktok"></i></a>
-            </div>
-            <div class="unical-link">
-                <a href="https://www.unical.it" target="_blank">Università della Calabria</a>
-                <p><strong>Contattaci: </strong>notes4&#64;unical.edu</p> 
-                <!-- &#64; dato che non posso mettere la @ -->
-            </div>
-        </div>
-    </footer>
+    <!-- Sezione Collegamenti Veloci -->
+    <div class="footer-section">
+      <h3 class="footer-title">Collegamenti</h3>
+      <ul class="footer-links">
+        <li><a routerLink="/privacy">Privacy Policy</a></li>
+        <li><a routerLink="/terms">Termini di Servizio</a></li>
+        <li><a href="https://www.unical.it" target="_blank">UniCal Website</a></li>
+      </ul>
+    </div>
 
-</body>
+    <!-- Sezione Social -->
+    <div class="footer-section">
+      <h3 class="footer-title">Seguici</h3>
+      <div class="social-grid">
+        <a href="https://www.instagram.com/unical_official/" target="_blank" class="social-icon instagram">
+          <i class="bi bi-instagram"></i>
+        </a>
+        <a href="https://it-it.facebook.com/unicalufficiale/" target="_blank" class="social-icon facebook">
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a href="https://www.linkedin.com/school/universit%C3%A0-della-calabria/" target="_blank" class="social-icon linkedin">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="https://github.com/UniversitaDellaCalabria" target="_blank" class="social-icon github">
+          <i class="bi bi-github"></i>
+        </a>
+        <a href="https://twitter.com/UniCalPortale?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank" class="social-icon twitter">
+          <i class="bi bi-twitter-x"></i>
+        </a>
+        <a href="https://www.tiktok.com" target="_blank" class="social-icon tiktok">
+          <i class="bi bi-tiktok"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="copyright">
+    <p>&copy; {{ currentYear }} Notes4UniCal. P.IVA 00419160783</p>
+  </div>
+</footer>
