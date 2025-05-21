@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   //REGISTRAZIONE 
-  register(email: string, nome: string, cognome: string, password: string, corsoDiStudio: number): Observable<any> {
+  register(email: string, nome: string, cognome: string, password: string, corsoDiStudio: string): Observable<any> {
     const userData = { email, nome, cognome, password, corsoDiStudio };
     return this.http.post(`${this.apiUrl}/registrazione`, userData);
   }
